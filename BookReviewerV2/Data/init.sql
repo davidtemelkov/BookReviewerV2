@@ -1,0 +1,3 @@
+CREATE DATABASE IF NOT EXISTS BookReviewerV2;
+
+USE BookReviewerV2;
