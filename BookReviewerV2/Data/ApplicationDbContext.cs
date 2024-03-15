@@ -6,6 +6,7 @@ namespace BookReviewerV2.Data;
 
 public class ApplicationDbContext : IdentityDbContext<User>
 {
+    public DbSet<Author> Authors { get; set; }
     public DbSet<Book> Books { get; set; }
     public DbSet<BookGenre> BookGenres { get; set; }
     public DbSet<Genre> Genres { get; set; }

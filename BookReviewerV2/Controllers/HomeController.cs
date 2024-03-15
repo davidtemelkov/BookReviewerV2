@@ -1,22 +1,32 @@
 using System.Diagnostics;
+using BookReviewerV2.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using BookReviewerV2.Models;
+using BookReviewerV2.Models.Books;
+using BookReviewerV2.Services.Books;
+using BookReviewerV2.Services.Genre;
+using Microsoft.AspNetCore.Identity;
 
 namespace BookReviewerV2.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
+    private readonly IBookService books;
+    private readonly IGenreService genres;
 
-    public HomeController(ILogger<HomeController> logger)
+    public HomeController(IBookService books,
+        IGenreService genres,
+        UserManager<User> userManager)
     {
-        _logger = logger;
+        this.books = books;
+        this.genres = genres;
     }
 
-    public IActionResult Index()
+    public IActionResult Index() => View(new BookQueryViewModel
     {
-        return View();
-    }
+        Genres = this.genres.GetGenres(),
+        Books = this.books.GetAcceptedBooks()
+    });
 
     public IActionResult Privacy()
     {

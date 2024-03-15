@@ -1,0 +1,38 @@
+@model AllListsViewModel
+
+@inject SignInManager<User> SignInManager
+
+@if (!Model.Lists.Any())
+{
+    <div class="d-flex justify-content-center pt-5 pb-5">
+        <h2>No lists yet!</h2>
+    </div>
+}
+else
+{
+    foreach (var list in Model.Lists)
+    {
+        <a asp-controller="Lists" asp-action="Details" asp-route-id="@list.Id">
+            <div class="row mb-4" style="border:ridge">
+                <div class="mb-3 mt-3 ml-3">
+                    <h4>@list.Name</h4>
+                    <span></span>
+                    <h6>@list.Description</h6>
+                </div>
+            </div>
+        </a>
+    }
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+    @if (@User.Id() == Model.UserId)
+    {
+        <div class="d-flex justify-content-center">
+            <a class="btn btn-dark" asp-controller="Lists" asp-action="Create">Create list</a>
+        </div>
+
+    }
+}
+
+

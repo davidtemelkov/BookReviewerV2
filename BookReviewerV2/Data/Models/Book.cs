@@ -25,9 +25,10 @@ public class Book
 
     public bool IsAccepted { get; set; }
     
-    public string AuthorId { get; set; }
+    public int AuthorId { get; set; }
+    
     [ForeignKey("AuthorId")]
-    public User Author { get; set; }
+    public Author Author { get; set; }
     
     public ICollection<BookGenre> BookGenres { get; set; }
     public ICollection<ListBook> ListBooks { get; set; }
