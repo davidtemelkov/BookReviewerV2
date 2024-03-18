@@ -12,7 +12,7 @@ public class BookFormModel
 
     [StringLength(50,
         MinimumLength = 1)]
-    public string Author { get; init; }
+    public string? Author { get; init; }
 
     [Required]
     [Url]
@@ -34,11 +34,9 @@ public class BookFormModel
         ErrorMessage = "The description of the book must be between {2} and {1} characters!")]
     public string Description { get; init; }
 
-    [Required]
-    [Display(Name = "Genres")]
-    public ICollection<string> BookGenres { get; init; } = new List<string>();
+    [Required] [Display(Name = "Genres")] public ICollection<string> BookGenres { get; init; } = new List<string>();
 
-    public IEnumerable<string> Genres { get; set; } 
+    public IEnumerable<string>? Genres { get; set; } 
 
-    public IEnumerable<string> Authors { get; set; }
+    public IEnumerable<string>? Authors { get; set; }
 }

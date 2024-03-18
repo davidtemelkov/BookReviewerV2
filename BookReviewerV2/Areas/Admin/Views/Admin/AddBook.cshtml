@@ -8,28 +8,25 @@
 
 <form method="post">
     <div class="form-group">
-        <label asp-for="Title"></label>
-        <input asp-for="Title" class="form-control" placeholder="Enter title">
-        <span asp-validation-for="Title" class="small text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Author"></label>
-        <select asp-for="Author" class="form-control mdb-select md-form" searchable="Currently available authors">
-            @foreach (var author in Model.Authors)
-	        {
-                <option>@author</option>
-	        }
-        </select>
-    </div>
-    <div class="form-group">
-        <label asp-for="BookGenres"></label>
-        <select asp-for="BookGenres" multiple class="form-control">
-            @foreach (var genre in Model.Genres)
-            {
-                <option>@genre</option>
-            }
-        </select>
-    </div>
+           <label asp-for="Title"></label>
+           <input asp-for="Title" class="form-control" placeholder="Enter title">
+           <span asp-validation-for="Title" class="small text-danger"></span>
+       </div>
+       <div class="form-group">
+           <label asp-for="Author"></label>
+           <select asp-for="Author" class="form-control mdb-select md-form" searchable="Currently available authors">
+               <option value="">Select an author</option>
+               @foreach (var author in Model.Authors)
+               {
+                   <option value="@author">@author</option>
+               }
+           </select>
+       </div>
+       <div class="form-group">
+           <label asp-for="BookGenres"></label>
+           <select asp-for="BookGenres" multiple class="form-control" asp-items="Model.Genres.Select(genre => new SelectListItem { Text = genre, Value = genre })">
+           </select>
+       </div>
     <div class="form-group">
         <label asp-for="YearPublished"></label>
         <input asp-for="YearPublished" class="form-control" placeholder="yyyy">

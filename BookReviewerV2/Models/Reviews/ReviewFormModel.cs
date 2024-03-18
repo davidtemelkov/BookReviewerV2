@@ -9,7 +9,7 @@ public class ReviewFormModel
 
     public string Text { get; init; }
        
-    public string UserId { get; init; }
+    public string? UserId { get; init; }
        
-    public int BookId {get;init;}
+    public int? BookId {get;init;}
 }

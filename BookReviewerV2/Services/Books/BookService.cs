@@ -65,10 +65,14 @@ public class BookService : IBookService
         {
             var bookData = this.mapper.Map<Book>(book);
             bookData.Author = this.data.Authors.FirstOrDefault(a => a.Id == currentUser.AuthorId);
-
+          
             foreach (var genre in book.BookGenres)
             {
-                bookData.BookGenres.Add(new BookGenre { Book = bookData, Genre = data.Genres.FirstOrDefault(g => g.Name == genre) });
+                bookData.BookGenres.Add(new BookGenre
+                {
+                    BookId = bookData.Id, 
+                    GenreId = this.data.Genres.FirstOrDefault(g => g.Name == genre).Id
+                });
             }
 
             this.data.Books.Add(bookData);

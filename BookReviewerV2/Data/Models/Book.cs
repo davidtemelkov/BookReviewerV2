@@ -29,8 +29,8 @@ public class Book
     
     [ForeignKey("AuthorId")]
     public Author Author { get; set; }
-    
-    public ICollection<BookGenre> BookGenres { get; set; }
-    public ICollection<ListBook> ListBooks { get; set; }
-    public ICollection<Review> Reviews { get; set; }
+
+    public ICollection<BookGenre> BookGenres { get; set; } = new List<BookGenre>();
+    public ICollection<ListBook> ListBooks { get; set; } = new List<ListBook>();
+    public ICollection<Review> Reviews { get; set; } = new List<Review>();
 }
