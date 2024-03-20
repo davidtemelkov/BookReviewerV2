@@ -1,6 +1,6 @@
 using System.Security.Claims;
 
-namespace BookReviewerV2.Infrastructure;
+namespace BookReviewerV2.MVC.Infrastructure;
 
 public static class ClaimsPrincipalExtensions
 {

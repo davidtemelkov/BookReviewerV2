@@ -1,6 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookReviewerV2", "BookReviewerV2\BookReviewerV2.csproj", "{77775ED3-5205-4987-9BE3-B550F4AB3BF9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookReviewerV2.MVC", "BookReviewerV2.MVC\BookReviewerV2.MVC.csproj", "{77775ED3-5205-4987-9BE3-B550F4AB3BF9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookReviewerV2.Data", "BookReviewerV2.Data\BookReviewerV2.Data.csproj", "{9B25AA2F-8CAC-42EE-80D8-003832D436BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookReviewerV2.Services", "BookReviewerV2.Services\BookReviewerV2.Services.csproj", "{99955636-5138-4A07-8570-2FDF553B7CE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookReviewerV2.Models", "BookReviewerV2.Models\BookReviewerV2.Models.csproj", "{4ECC3B7E-4C72-425B-9551-9E1AE03D1054}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,5 +18,17 @@ Global
 		{77775ED3-5205-4987-9BE3-B550F4AB3BF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77775ED3-5205-4987-9BE3-B550F4AB3BF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77775ED3-5205-4987-9BE3-B550F4AB3BF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B25AA2F-8CAC-42EE-80D8-003832D436BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B25AA2F-8CAC-42EE-80D8-003832D436BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B25AA2F-8CAC-42EE-80D8-003832D436BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B25AA2F-8CAC-42EE-80D8-003832D436BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99955636-5138-4A07-8570-2FDF553B7CE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99955636-5138-4A07-8570-2FDF553B7CE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99955636-5138-4A07-8570-2FDF553B7CE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99955636-5138-4A07-8570-2FDF553B7CE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ECC3B7E-4C72-425B-9551-9E1AE03D1054}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ECC3B7E-4C72-425B-9551-9E1AE03D1054}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ECC3B7E-4C72-425B-9551-9E1AE03D1054}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ECC3B7E-4C72-425B-9551-9E1AE03D1054}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

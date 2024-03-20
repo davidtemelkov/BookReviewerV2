@@ -7,7 +7,7 @@ using BookReviewerV2.Services.Books;
 using BookReviewerV2.Services.Genre;
 using Microsoft.AspNetCore.Identity;
 
-namespace BookReviewerV2.Controllers;
+namespace BookReviewerV2.MVC.Controllers;
 
 public class HomeController : Controller
 {

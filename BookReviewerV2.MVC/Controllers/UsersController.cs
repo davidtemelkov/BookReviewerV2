@@ -2,7 +2,7 @@ using BookReviewerV2.Models.Users;
 using BookReviewerV2.Services.Users;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookReviewerV2.Controllers;
+namespace BookReviewerV2.MVC.Controllers;
 
 public class UsersController : Controller
 {

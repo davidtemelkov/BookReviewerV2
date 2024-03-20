@@ -6,9 +6,9 @@ using BookReviewerV2.Services.Genre;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-using static BookReviewerV2.Areas.Admin.AdminConstants;
+using static BookReviewerV2.MVC.Areas.Admin.AdminConstants;
 
-namespace BookReviewerV2.Areas.Admin.Controllers;
+namespace BookReviewerV2.MVC.Areas.Admin.Controllers;
 
 [Area(AreaName)]
 [Authorize(Roles = AdministratorRoleName)]

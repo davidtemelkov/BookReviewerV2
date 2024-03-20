@@ -4,6 +4,7 @@ using BookReviewerV2.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookReviewerV2.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240313143414_RemoveUserColumn")]
+    partial class RemoveUserColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,7 +25,7 @@ namespace BookReviewerV2.Data.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
-            modelBuilder.Entity("BookReviewerV2.Data.Models.Author", b =>
+            modelBuilder.Entity("BookReviewerV2.MVC.Data.Models.Book", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -30,38 +33,9 @@ namespace BookReviewerV2.Data.Migrations
 
                     MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Details")
+                    b.Property<string>("AuthorId")
                         .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("varchar(500)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
-
-                    b.Property<string>("PictureUrl")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Authors");
-                });
-
-            modelBuilder.Entity("BookReviewerV2.Data.Models.Book", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AuthorId")
-                        .HasColumnType("int");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("CoverURL")
                         .IsRequired()
@@ -96,7 +70,7 @@ namespace BookReviewerV2.Data.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("BookReviewerV2.Data.Models.BookGenre", b =>
+            modelBuilder.Entity("BookReviewerV2.MVC.Data.Models.BookGenre", b =>
                 {
                     b.Property<int>("BookId")
                         .HasColumnType("int");
@@ -111,7 +85,7 @@ namespace BookReviewerV2.Data.Migrations
                     b.ToTable("BookGenres");
                 });
 
-            modelBuilder.Entity("BookReviewerV2.Data.Models.Genre", b =>
+            modelBuilder.Entity("BookReviewerV2.MVC.Data.Models.Genre", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -129,7 +103,7 @@ namespace BookReviewerV2.Data.Migrations
                     b.ToTable("Genres");
                 });
 
-            modelBuilder.Entity("BookReviewerV2.Data.Models.List", b =>
+            modelBuilder.Entity("BookReviewerV2.MVC.Data.Models.List", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -156,7 +130,7 @@ namespace BookReviewerV2.Data.Migrations
                     b.ToTable("Lists");
                 });
 
-            modelBuilder.Entity("BookReviewerV2.Data.Models.ListBook", b =>
+            modelBuilder.Entity("BookReviewerV2.MVC.Data.Models.ListBook", b =>
                 {
                     b.Property<int>("ListId")
                         .HasColumnType("int");
@@ -171,7 +145,7 @@ namespace BookReviewerV2.Data.Migrations
                     b.ToTable("ListBooks");
                 });
 
-            modelBuilder.Entity("BookReviewerV2.Data.Models.Review", b =>
+            modelBuilder.Entity("BookReviewerV2.MVC.Data.Models.Review", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -204,7 +178,7 @@ namespace BookReviewerV2.Data.Migrations
                     b.ToTable("Reviews");
                 });
 
-            modelBuilder.Entity("BookReviewerV2.Data.Models.User", b =>
+            modelBuilder.Entity("BookReviewerV2.MVC.Data.Models.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("varchar(255)");
@@ -215,12 +189,12 @@ namespace BookReviewerV2.Data.Migrations
                     b.Property<DateTime?>("AccountCreation")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int?>("AuthorId")
-                        .HasColumnType("int");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("longtext");
+
+                    b.Property<DateTime?>("DateOfBirth")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("Description")
                         .HasMaxLength(500)
@@ -231,6 +205,9 @@ namespace BookReviewerV2.Data.Migrations
                         .HasColumnType("varchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<bool>("IsAuthor")
                         .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("LockoutEnabled")
@@ -271,8 +248,6 @@ namespace BookReviewerV2.Data.Migrations
                         .HasColumnType("varchar(256)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AuthorId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -420,9 +395,9 @@ namespace BookReviewerV2.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("BookReviewerV2.Data.Models.Book", b =>
+            modelBuilder.Entity("BookReviewerV2.MVC.Data.Models.Book", b =>
                 {
-                    b.HasOne("BookReviewerV2.Data.Models.Author", "Author")
+                    b.HasOne("BookReviewerV2.MVC.Data.Models.User", "Author")
                         .WithMany("AuthoredBooks")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -431,15 +406,15 @@ namespace BookReviewerV2.Data.Migrations
                     b.Navigation("Author");
                 });
 
-            modelBuilder.Entity("BookReviewerV2.Data.Models.BookGenre", b =>
+            modelBuilder.Entity("BookReviewerV2.MVC.Data.Models.BookGenre", b =>
                 {
-                    b.HasOne("BookReviewerV2.Data.Models.Book", "Book")
+                    b.HasOne("BookReviewerV2.MVC.Data.Models.Book", "Book")
                         .WithMany("BookGenres")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BookReviewerV2.Data.Models.Genre", "Genre")
+                    b.HasOne("BookReviewerV2.MVC.Data.Models.Genre", "Genre")
                         .WithMany("BookGenres")
                         .HasForeignKey("GenreId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -450,9 +425,9 @@ namespace BookReviewerV2.Data.Migrations
                     b.Navigation("Genre");
                 });
 
-            modelBuilder.Entity("BookReviewerV2.Data.Models.List", b =>
+            modelBuilder.Entity("BookReviewerV2.MVC.Data.Models.List", b =>
                 {
-                    b.HasOne("BookReviewerV2.Data.Models.User", "User")
+                    b.HasOne("BookReviewerV2.MVC.Data.Models.User", "User")
                         .WithMany("Lists")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -461,15 +436,15 @@ namespace BookReviewerV2.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("BookReviewerV2.Data.Models.ListBook", b =>
+            modelBuilder.Entity("BookReviewerV2.MVC.Data.Models.ListBook", b =>
                 {
-                    b.HasOne("BookReviewerV2.Data.Models.Book", "Book")
+                    b.HasOne("BookReviewerV2.MVC.Data.Models.Book", "Book")
                         .WithMany("ListBooks")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BookReviewerV2.Data.Models.List", "List")
+                    b.HasOne("BookReviewerV2.MVC.Data.Models.List", "List")
                         .WithMany("ListBooks")
                         .HasForeignKey("ListId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -480,15 +455,15 @@ namespace BookReviewerV2.Data.Migrations
                     b.Navigation("List");
                 });
 
-            modelBuilder.Entity("BookReviewerV2.Data.Models.Review", b =>
+            modelBuilder.Entity("BookReviewerV2.MVC.Data.Models.Review", b =>
                 {
-                    b.HasOne("BookReviewerV2.Data.Models.Book", "Book")
+                    b.HasOne("BookReviewerV2.MVC.Data.Models.Book", "Book")
                         .WithMany("Reviews")
                         .HasForeignKey("BookId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BookReviewerV2.Data.Models.User", "User")
+                    b.HasOne("BookReviewerV2.MVC.Data.Models.User", "User")
                         .WithMany("Reviews")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -497,15 +472,6 @@ namespace BookReviewerV2.Data.Migrations
                     b.Navigation("Book");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("BookReviewerV2.Data.Models.User", b =>
-                {
-                    b.HasOne("BookReviewerV2.Data.Models.Author", "Author")
-                        .WithMany()
-                        .HasForeignKey("AuthorId");
-
-                    b.Navigation("Author");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -519,7 +485,7 @@ namespace BookReviewerV2.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("BookReviewerV2.Data.Models.User", null)
+                    b.HasOne("BookReviewerV2.MVC.Data.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -528,7 +494,7 @@ namespace BookReviewerV2.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("BookReviewerV2.Data.Models.User", null)
+                    b.HasOne("BookReviewerV2.MVC.Data.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -543,7 +509,7 @@ namespace BookReviewerV2.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BookReviewerV2.Data.Models.User", null)
+                    b.HasOne("BookReviewerV2.MVC.Data.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -552,19 +518,14 @@ namespace BookReviewerV2.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("BookReviewerV2.Data.Models.User", null)
+                    b.HasOne("BookReviewerV2.MVC.Data.Models.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("BookReviewerV2.Data.Models.Author", b =>
-                {
-                    b.Navigation("AuthoredBooks");
-                });
-
-            modelBuilder.Entity("BookReviewerV2.Data.Models.Book", b =>
+            modelBuilder.Entity("BookReviewerV2.MVC.Data.Models.Book", b =>
                 {
                     b.Navigation("BookGenres");
 
@@ -573,18 +534,20 @@ namespace BookReviewerV2.Data.Migrations
                     b.Navigation("Reviews");
                 });
 
-            modelBuilder.Entity("BookReviewerV2.Data.Models.Genre", b =>
+            modelBuilder.Entity("BookReviewerV2.MVC.Data.Models.Genre", b =>
                 {
                     b.Navigation("BookGenres");
                 });
 
-            modelBuilder.Entity("BookReviewerV2.Data.Models.List", b =>
+            modelBuilder.Entity("BookReviewerV2.MVC.Data.Models.List", b =>
                 {
                     b.Navigation("ListBooks");
                 });
 
-            modelBuilder.Entity("BookReviewerV2.Data.Models.User", b =>
+            modelBuilder.Entity("BookReviewerV2.MVC.Data.Models.User", b =>
                 {
+                    b.Navigation("AuthoredBooks");
+
                     b.Navigation("Lists");
 
                     b.Navigation("Reviews");

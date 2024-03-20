@@ -7,7 +7,7 @@ using BookReviewerV2.Models.Lists;
 using BookReviewerV2.Models.Reviews;
 using BookReviewerV2.Models.Users;
 
-namespace BookReviewerV2.Infrastructure;
+namespace BookReviewerV2.MVC.Infrastructure;
 
 public class MappingProfile : Profile
 {

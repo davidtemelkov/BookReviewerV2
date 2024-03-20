@@ -1,10 +1,10 @@
-using BookReviewerV2.Infrastructure;
+using BookReviewerV2.MVC.Infrastructure;
 using BookReviewerV2.Models.Lists;
 using BookReviewerV2.Services.Lists;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookReviewerV2.Controllers;
+namespace BookReviewerV2.MVC.Controllers;
 
 public class ListsController : Controller
 {

@@ -1,4 +1,4 @@
-namespace BookReviewerV2.Areas.Admin;
+namespace BookReviewerV2.MVC.Areas.Admin;
 
 public class AdminConstants
 {
