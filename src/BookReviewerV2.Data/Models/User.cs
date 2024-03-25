@@ -2,14 +2,16 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
 
+using static BookReviewerV2.Data.Constants;
+
 namespace BookReviewerV2.Data.Models;
 
 public class User : IdentityUser
 {
-    [MaxLength(500)]
+    [MaxLength(UserMaxDescription)]
     public string? Description { get; set; }
     
-    [MaxLength(255)]
+    [MaxLength(UserMaxProfilePictureUrl)]
     public string? ProfilePictureURL { get; set; }
     
     public int? AuthorId { get; set; }

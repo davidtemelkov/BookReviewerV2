@@ -1,17 +1,19 @@
 using System.ComponentModel.DataAnnotations;
 
+using static BookReviewerV2.Models.Constants;
+
 namespace BookReviewerV2.Models.Books;
 
 public class BookFormModel
 {
     [Required]
-    [StringLength(60,
-        MinimumLength = 1,
+    [StringLength(BookMaxTitle,
+        MinimumLength = BookMinTitle,
         ErrorMessage = "The title of the book must be between {2} and {1} characters!")]
     public string Title { get; init; }
 
-    [StringLength(50,
-        MinimumLength = 1)]
+    [StringLength(AuthorMaxName,
+        MinimumLength = AuthorMinName)]
     public string? Author { get; init; }
 
     [Required]
@@ -20,17 +22,17 @@ public class BookFormModel
     public string CoverUrl { get; init; }
 
     [Required]
-    [Range(999, 3000, ErrorMessage = "The year must be between 999 and 3000.")]
+    [Range(YearMinValue, YearMaxValue, ErrorMessage = "The year must be between 999 and 3000.")]
     [Display(Name = "Year published")]
     public int YearPublished { get; set; }
 
     [Required]
-    [Range(1,5000,
+    [Range(BookMinPages ,BookMaxPages,
         ErrorMessage = "The pages of the book must be between {1} and {2}!")]
     public int Pages { get; init; }
 
     [Required]
-    [StringLength(500, MinimumLength = 5,
+    [StringLength(BookMaxDescription, MinimumLength = BookMinDescription,
         ErrorMessage = "The description of the book must be between {2} and {1} characters!")]
     public string Description { get; init; }
 

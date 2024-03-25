@@ -1,6 +1,9 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+using static BookReviewerV2.Data.Constants;
+
+
 namespace BookReviewerV2.Data.Models;
 
 public class Book
@@ -9,10 +12,10 @@ public class Book
     public int Id { get; set; }
 
     [Required]
-    [MaxLength(100)]
+    [MaxLength(BookMaxTitle)]
     public string Title { get; set; }
 
-    [MaxLength(255)]
+    [MaxLength(BookMaxCoverUrl)]
     public string CoverURL { get; set; }
 
     public int? YearPublished { get; set; }

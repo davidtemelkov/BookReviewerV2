@@ -1,5 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 
+using static BookReviewerV2.Data.Constants;
+
 namespace BookReviewerV2.Data.Models;
 
 public class Author
@@ -8,14 +10,14 @@ public class Author
     public int Id { get; init; }
 
     [Required]
-    [MaxLength(256)]
+    [MaxLength(AuthorMaxName)]
     public string Name { get; set; }
 
     [Required]
     public DateTime DateOfBirth { get; set; } 
 
     [Required]
-    [MaxLength(500)]
+    [MaxLength(AuthorMaxDetails)]
     public string Details { get; set; }
 
     public string PictureUrl { get; set; }
